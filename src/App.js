@@ -10,7 +10,6 @@ import Login from "./components/Login/Login";
 import Order from "./components/Order/Order";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
-
 export const UserContext= createContext();
 export const ProductContext= createContext();
 
@@ -33,7 +32,7 @@ console.log(orderProduct);
           <PrivateRoute path="/order">
             <Order/>
           </PrivateRoute>
-          <PrivateRoute path="/addEvent">
+          <PrivateRoute path="/addProduct">
             <AddEvent/>
           </PrivateRoute>
           <PrivateRoute path="/manage">
@@ -43,7 +42,7 @@ console.log(orderProduct);
             <Checkout/>
           </PrivateRoute>
           <Route path="*">
-            <h1>page not found</h1>
+            <h1 style={{textAlign: "center"}}>page not found</h1>
           </Route>
         </Switch>
       </Router>

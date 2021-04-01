@@ -12,8 +12,8 @@ const Sidebar = () => {
               <h3><SupervisorAccountIcon/>Manage Product List</h3> 
             </Link>
           
-            <Link to="/addEvent">
-               <h3><PersonAddIcon/> Add event</h3>
+            <Link to="/addProduct">
+               <h3><PersonAddIcon/> Add Product</h3>
             </Link>
           
             </div>

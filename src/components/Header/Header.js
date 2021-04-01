@@ -45,7 +45,6 @@ import './Header.css';
     },
   }));
 
-
 const Header = () => {
     const [loggedUser, setLoggedUser] = useContext(UserContext);
   const classes = useStyles();
@@ -80,15 +79,12 @@ const Header = () => {
         </Button>
       </MenuItem>
       <MenuItem>
-        <Button color="default">donation</Button>
-      </MenuItem>
-      <MenuItem>
         <Button color="default" onClick={() => history.push("/order")}>
           Order
         </Button>
       </MenuItem>
       <MenuItem>
-        <Button color="default">blog</Button>
+        <Button color="default">Contact Us</Button>
       </MenuItem>
       {loggedUser?.displayName ? (
             <MenuItem>
@@ -108,7 +104,7 @@ const Header = () => {
           color="default"
           className={classes.custombtn}
           style={{ background: "#434141" }}
-          onClick={() => history.push("/addEvent")}
+          onClick={() => history.push("/addProduct")}
         >
           Admin
         </Button>
@@ -131,11 +127,10 @@ const Header = () => {
               <Button color="default" onClick={() => history.push("/")}>
                 Home
               </Button>
-              <Button color="default">donation</Button>
               <Button color="default" onClick={() => history.push("/order")}>
                 Order
               </Button>
-              <Button color="default">blog</Button>
+              <Button color="default">Contact Us</Button>
               {loggedUser?.displayName ? (
             <>
               <Button color="default" className={classes.custombtn} onClick={() => history.push("/")}>
@@ -154,7 +149,7 @@ const Header = () => {
                 color="default"
                 className={classes.custombtn}
                 style={{ background: "#434141" }}
-                onClick={() => history.push("/addEvent")}
+                onClick={() => history.push("/addProduct")}
               >
                 Admin
               </Button>

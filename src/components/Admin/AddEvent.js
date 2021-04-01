@@ -10,25 +10,24 @@ const AddEvent = () => {
   
   const onSubmit = data => {
     console.log(data);
-    const eventData = {
+    const productData = {
       name: data.name,
       price:data.price,
       brand:data.brand,
       imageURL: imageURL
     };
     const url = `https://mighty-gorge-79417.herokuapp.com/addProduct`;
-    console.log(eventData);
+    console.log(productData);
     fetch(url, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(eventData)
+      body: JSON.stringify(productData)
     })
     .then(res => res.json())
     .then(data=>{
       alert("Product Added Successfully")})
-      console.log(data.name);
       reset()
   };
 
@@ -52,17 +51,18 @@ const AddEvent = () => {
     <>
     <Sidebar/>
     <div className="admin-container">
-      <h1>Add Your Product</h1>
+      
       <form onSubmit={handleSubmit(onSubmit)}>
-      <input name="name" placeholder="Product Name" ref={register} />
-      <br/>
-      <input type="number" placeholder="price" name="price" ref={register} />
-      <br/>
-      <input name="brand" placeholder="brand Name" ref={register} />
-      <br/>
+      <h1>Add Your Product</h1>
+      <label>Product Name</label>
+      <input name="name"  ref={register} />
+      <label>Price</label>
+      <input type="number" name="price" ref={register} />
+      <label>Brand Name</label>
+      <input name="brand" ref={register} />
+      <label>Upload Image</label>
       <input name="exampleRequired" type="file" onChange={handleImageUpload} />
-      <br/>
-      <input type="submit" />
+      <input type="submit"  className="submitButton"/>
       </form>
     </div>
     </>

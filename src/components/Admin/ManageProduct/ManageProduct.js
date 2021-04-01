@@ -9,7 +9,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import Sidebar from "../Sidebar/Sidebar";
 import "./ManagerProduct.css";
 
@@ -20,8 +19,7 @@ const useStyles = makeStyles({
 });
 
 const ManageProduct = () => {
-    const [rows, setRows] = useState("");
-    const history = useHistory();
+    const [rows, setRows] = useState("")
     const classes = useStyles();
     
   const handleDelete = (id) => {
