@@ -37,7 +37,7 @@ const Order = () => {
     const [orders, setOrders] = useState([])
     console.log("orders",orders);
     useEffect(() => {
-        fetch("http://localhost:5000/order?email="+loggedUser.email,{
+        fetch("https://mighty-gorge-79417.herokuapp.com/order?email="+loggedUser.email,{
           method:'GET',
           headers:{
             "Content-Type":"application/json",

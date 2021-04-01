@@ -8,9 +8,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { UserContext } from "../../../App";
+import Sidebar from "../Sidebar/Sidebar";
 import "./ManagerProduct.css";
 
 const useStyles = makeStyles({
@@ -23,25 +23,24 @@ const ManageProduct = () => {
     const [rows, setRows] = useState("");
     const history = useHistory();
     const classes = useStyles();
-    const [orderProduct,setOrderProduct] = useContext(UserContext);
+    
   const handleDelete = (id) => {
     if (window.confirm("Are You Sure?")){
-    fetch(`http://localhost:5000/delete/${id}`, {
+    fetch(`https://mighty-gorge-79417.herokuapp.com/delete/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
-            const newData=orderProduct.filter(event=>event._id!==data.id)
-            setOrderProduct(newData)
-            alert(data.msg)
-            history.push('/manage')
+            console.log(rows);
+            const newData=rows.filter(event=>event._id!==id)
+            setRows(newData)
             });
         }  
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://mighty-gorge-79417.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setRows(data));
   }, []);
@@ -49,9 +48,11 @@ const ManageProduct = () => {
   
 
     return (
+        <>
+        <Sidebar/>
         <TableContainer align="center" component={Paper}>
             <Typography align="center" variant="h3" gutterBottom>
-                 Manage Your Products
+                 Manage Your Products : {rows.length}
             </Typography>
         <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -87,6 +88,7 @@ const ManageProduct = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
     );
 };
 

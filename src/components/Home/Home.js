@@ -54,7 +54,7 @@ const Home = () => {
   const [orderProduct,setOderProduct]=useContext(ProductContext)
   const [cardData, setCardData] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://mighty-gorge-79417.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => {
         setCardData(data);

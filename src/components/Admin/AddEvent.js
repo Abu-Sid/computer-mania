@@ -1,21 +1,22 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
 import "./AddEvent.css";
-const AddEvent = () => {
-  const { register, handleSubmit } = useForm();
-  const [imageURL, setIMageURL] = useState(null);
-const history = useHistory();
+import Sidebar from './Sidebar/Sidebar';
 
+const AddEvent = () => {
+  const { register, handleSubmit,reset } = useForm();
+  const [imageURL, setIMageURL] = useState(null);
+  
   const onSubmit = data => {
+    console.log(data);
     const eventData = {
       name: data.name,
       price:data.price,
       brand:data.brand,
       imageURL: imageURL
     };
-    const url = `http://localhost:5000/addEvent`;
+    const url = `https://mighty-gorge-79417.herokuapp.com/addProduct`;
     console.log(eventData);
     fetch(url, {
       method: 'POST', 
@@ -25,7 +26,10 @@ const history = useHistory();
       body: JSON.stringify(eventData)
     })
     .then(res => res.json())
-    .then(data=>alert("Product Added Successfully"))
+    .then(data=>{
+      alert("Product Added Successfully")})
+      console.log(data.name);
+      reset()
   };
 
   const handleImageUpload = event => {
@@ -45,31 +49,11 @@ const history = useHistory();
 
   }
   return (
+    <>
+    <Sidebar/>
     <div className="admin-container">
-      <div className="sidebar">
-      <ul>
-          <li>
-            <Link to="/manage">
-              <div className="icon">
-                {/* <img src={} alt="user" /> */}
-              </div>
-              Manage Product List
-            </Link>
-          </li>
-          <li>
-            <Link to="/addEvent">
-              <div className="icon">
-                {/* <img src={plus} alt="plus" /> */}
-              </div>
-              Add event
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
       <h1>Add Your Product</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-    
       <input name="name" placeholder="Product Name" ref={register} />
       <br/>
       <input type="number" placeholder="price" name="price" ref={register} />
@@ -79,10 +63,9 @@ const history = useHistory();
       <input name="exampleRequired" type="file" onChange={handleImageUpload} />
       <br/>
       <input type="submit" />
-    </form>
+      </form>
     </div>
-    </div>
-    
+    </>
   );
 };
 

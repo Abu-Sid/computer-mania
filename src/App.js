@@ -14,7 +14,6 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 export const UserContext= createContext();
 export const ProductContext= createContext();
 
-
 function App() {
   const [loggedUser,setLoggedUser]=useState({})
   const [orderProduct,setOrderProduct]=useState({})
@@ -43,7 +42,6 @@ console.log(orderProduct);
           <PrivateRoute path="/checkout/:id">
             <Checkout/>
           </PrivateRoute>
-
           <Route path="*">
             <h1>page not found</h1>
           </Route>

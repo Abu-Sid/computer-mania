@@ -10,12 +10,12 @@ const Checkout = () => {
     console.log('checkout',orderProduct);
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const checkoutProduct= orderProduct?.find(product=>product._id===id)
-    const {name,price,brand,imageURL}=checkoutProduct
+    const {name,price}=checkoutProduct
     
     const handleCheckout = data => {
         console.log('form submitted', data)
         const orderDetails={...loggedInUser,orderData:checkoutProduct,orderTime:new Date()}
-        fetch('http://localhost:5000/addOrder',{
+        fetch('https://mighty-gorge-79417.herokuapp.com/addOrder',{
               method:'POST',
               headers:{ 
                   'Content-Type':'application/json'
