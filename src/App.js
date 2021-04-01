@@ -2,6 +2,7 @@
 import { createContext, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddEvent from "./components/Admin/AddEvent";
+import ManageProduct from "./components/Admin/ManageProduct/ManageProduct";
 import Checkout from "./components/Checkout/Checkout";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
@@ -17,7 +18,7 @@ export const ProductContext= createContext();
 function App() {
   const [loggedUser,setLoggedUser]=useState({})
   const [orderProduct,setOrderProduct]=useState({})
-console.log(loggedUser);
+console.log(orderProduct);
   return (
     <UserContext.Provider value={[loggedUser, setLoggedUser]}>
     <ProductContext.Provider value={[orderProduct,setOrderProduct]}>
@@ -35,6 +36,9 @@ console.log(loggedUser);
           </PrivateRoute>
           <PrivateRoute path="/addEvent">
             <AddEvent/>
+          </PrivateRoute>
+          <PrivateRoute path="/manage">
+            <ManageProduct/>
           </PrivateRoute>
           <PrivateRoute path="/checkout/:id">
             <Checkout/>

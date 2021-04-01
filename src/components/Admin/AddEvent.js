@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-
+import { Link, useHistory } from "react-router-dom";
+import "./AddEvent.css";
 const AddEvent = () => {
   const { register, handleSubmit } = useForm();
   const [imageURL, setIMageURL] = useState(null);
-
+const history = useHistory();
 
   const onSubmit = data => {
     const eventData = {
@@ -23,7 +24,8 @@ const AddEvent = () => {
       },
       body: JSON.stringify(eventData)
     })
-    .then(res => console.log('server side response'))
+    .then(res => res.json())
+    .then(data=>alert("Product Added Successfully"))
   };
 
   const handleImageUpload = event => {
@@ -43,7 +45,28 @@ const AddEvent = () => {
 
   }
   return (
-    <div>
+    <div className="admin-container">
+      <div className="sidebar">
+      <ul>
+          <li>
+            <Link to="/manage">
+              <div className="icon">
+                {/* <img src={} alt="user" /> */}
+              </div>
+              Manage Product List
+            </Link>
+          </li>
+          <li>
+            <Link to="/addEvent">
+              <div className="icon">
+                {/* <img src={plus} alt="plus" /> */}
+              </div>
+              Add event
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div>
       <h1>Add Your Product</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
     
@@ -58,6 +81,8 @@ const AddEvent = () => {
       <input type="submit" />
     </form>
     </div>
+    </div>
+    
   );
 };
 

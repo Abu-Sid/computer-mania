@@ -37,12 +37,17 @@ const Order = () => {
     const [orders, setOrders] = useState([])
     console.log("orders",orders);
     useEffect(() => {
-        fetch("http://localhost:5000/order")
+        fetch("http://localhost:5000/order?email="+loggedUser.email,{
+          method:'GET',
+          headers:{
+            "Content-Type":"application/json",
+          }
+        })
+        
           .then((res) => res.json())
-          .then((data) => {
-            setOrders(data);
-          });
-      }, []);
+          .then((data) => setOrders(data))
+          
+      }, [loggedUser.email]);
     const classes = useStyles();    
     return (
         <main>
