@@ -137,7 +137,7 @@ const Header = () => {
                 {loggedUser.displayName}
               </Button>
 
-              <Button color="default" className={classes.custombtn} onClick={() => history.push('/login')} style={{ color: 'white' }}>
+              <Button color="default" className={classes.custombtn} onClick={() => setLoggedUser({})} style={{ color: 'white' }}>
                 Sign Out
               </Button>
             </>

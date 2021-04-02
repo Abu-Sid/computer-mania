@@ -1,5 +1,5 @@
 
-import { Container, Grid, InputBase, makeStyles, Typography } from "@material-ui/core";
+import { CircularProgress, Container, Grid, InputBase, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../App";
@@ -47,6 +47,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  spinner: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
 }));
 
 const Home = () => {
@@ -66,7 +72,7 @@ const Home = () => {
       
       <Container className={classes.container}>
         <Typography className={classes.heading} variant="h3" gutterBottom>
-          Get Your Laptop within your Budget
+          Get Your Computer within your Budget
         </Typography>
         <div className={classes.searchbox}>
         <div className={classes.searchIcon}>
@@ -89,7 +95,12 @@ const Home = () => {
               <Card data={data} key={data._id}></Card>
             ))
           ) : (
-            <h1>Loading....</h1>
+            <div className={classes.spinner}>
+              <LinearProgress />
+              <CircularProgress />
+              <LinearProgress color="secondary" />
+            </div>
+            
           )}
         </Grid>
       </Container>

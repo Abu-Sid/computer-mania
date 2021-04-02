@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, CircularProgress, LinearProgress, Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -12,11 +12,17 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import "./ManagerProduct.css";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: "60%",
   },
-});
+  spinner: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 const ManageProduct = () => {
     const [rows, setRows] = useState("")
@@ -81,7 +87,11 @@ const ManageProduct = () => {
               </TableRow>
             ))
           ) : (
-            <h1>loading....!</h1>
+            <div className={classes.spinner}>
+              <LinearProgress />
+              <CircularProgress />
+              <LinearProgress color="secondary" />
+            </div>
           )}
         </TableBody>
       </Table>
